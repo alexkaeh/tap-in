@@ -2,11 +2,16 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class User {
+@Entity
+@Table(name = "users")
+public class Users {
 
    private Long id;
    private String username;
@@ -14,6 +19,8 @@ public class User {
    private String password;
    @JsonIgnore
    private boolean activated;
+   @JsonIgnore
+   @Transient
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
