@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -46,7 +46,7 @@ public class Users {
       inverseJoinColumns = { @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id") })
    private Brewery brewery;
 
-   public Users(Long id, String username, String password, String authorities) {
+   public User(Long id, String username, String password, String authorities) {
       this.id = id;
       this.username = username;
       this.password = password;
@@ -66,7 +66,7 @@ public class Users {
    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
-      Users user = (Users) o;
+      User user = (User) o;
       return id == user.id &&
               activated == user.activated &&
               Objects.equals(username, user.username) &&

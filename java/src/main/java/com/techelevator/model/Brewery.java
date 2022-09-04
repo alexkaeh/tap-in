@@ -28,7 +28,7 @@ public class Brewery {
     private Long breweryId;
 
     @OneToOne(mappedBy = "brewery")
-    private Users brewer;
+    private User brewer;
 
 //    no actual field in database due to one-to-many relationship
     @OneToMany(mappedBy = "brewery")

@@ -25,7 +25,7 @@ public class Review {
 
     @ManyToOne // defaults to eager fetch
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     private Rating rating;
 
