@@ -1,5 +1,14 @@
+/**
+ * Represents each individual brewery.
+ *
+ * Only one brewer is permitted per brewery
+ *
+ *
+ */
+
 package com.techelevator.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,16 +20,17 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Brewery {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "brewery_id", nullable = false)
     private Long breweryId;
 
-//    FIXME How many breweries can a brewer have? How many brewers can a brewery have?
-    @OneToOne
+    @OneToOne(mappedBy = "brewery")
     private Users brewer;
 
+//    no actual field in database due to one-to-many relationship
     @OneToMany(mappedBy = "brewery")
     List<HoursOfOperation> daysAndHoursOfOperation;
 
@@ -28,22 +38,8 @@ public class Brewery {
     private String breweryName;
 
     private String contactInfo;
-
     private String address;
-
     private String historyDesc;
-
     private String breweryImages;
-
     private boolean isActive;
-
-    public Brewery(Long breweryId, String breweryName, String contactInfo, String address, String historyDesc, String breweryImages, boolean isActive) {
-        this.breweryId = breweryId;
-        this.breweryName = breweryName;
-        this.contactInfo = contactInfo;
-        this.address = address;
-        this.historyDesc = historyDesc;
-        this.breweryImages = breweryImages;
-        this.isActive = isActive;
-    }
 }

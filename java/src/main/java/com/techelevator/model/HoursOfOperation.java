@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import com.techelevator.enumerated.Day;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,10 +17,10 @@ public class HoursOfOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hours_of_operation_seq")
     @SequenceGenerator(name = "hours_of_operation_seq")
-    @Column(name = "id", nullable = false)
+    @Column(name = "hoo_id", nullable = false)
     private Long hooId;
 
-    @ManyToOne
+    @ManyToOne // default fetch eager
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 

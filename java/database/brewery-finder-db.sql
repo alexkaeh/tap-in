@@ -89,9 +89,9 @@ create sequence seq_beer_id
 create table beer (
     beer_id int not null default nextval('seq_beer_id'),
     brewery_id int not null,
-    beer_name varchar(50) NOT NULL,
+    beer_name varchar(50) not null,
     description varchar(1000),
-    image varchar(100) NOT NULL,
+    image varchar(100),
     abv decimal,
     beer_type type,
     is_active boolean,

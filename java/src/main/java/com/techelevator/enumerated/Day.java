@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.enumerated;
 
 public enum Day {
     SUNDAY,
