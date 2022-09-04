@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-import com.techelevator.enumerated.BeerType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,7 @@ public class Beer {
     @Column(name = "beer_id", nullable = false)
     private Long beerId;
 
-    @ManyToOne()
+    @ManyToOne() // fixme
     @JoinColumn()
     private Brewery brewery;
 

@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-import com.techelevator.enumerated.Rating;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

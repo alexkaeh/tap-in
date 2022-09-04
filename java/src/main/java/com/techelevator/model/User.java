@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.techelevator.enumerated.AccountType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,7 +35,8 @@ public class User {
    private Set<Authority> authorities = new HashSet<>();
 
 //   Added fields
-   private AccountType accountType;
+//   @ManyToOne
+//   private AccountType accountType;
 
 //   User <-> Brewery relationship requires join table to account for null
 //   values when user does not have a brewery
