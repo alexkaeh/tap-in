@@ -26,6 +26,8 @@ public class Review {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rating")
     private Rating rating;
 
     private String reviewText;

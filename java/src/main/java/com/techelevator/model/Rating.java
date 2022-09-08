@@ -5,5 +5,8 @@ public enum Rating {
     TWO,
     THREE,
     FOUR,
-    FIVE
+    FIVE;
+
+    Rating() {
+    }
 }

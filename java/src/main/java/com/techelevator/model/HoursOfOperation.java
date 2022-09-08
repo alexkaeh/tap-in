@@ -23,6 +23,8 @@ public class HoursOfOperation {
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "day")
     private Day day;
 
     @Column(name ="open_time", columnDefinition = "TIME")

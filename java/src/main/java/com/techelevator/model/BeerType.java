@@ -8,5 +8,8 @@ public enum BeerType {
         STOUT,
         PORTER,
         BELGIAN_BEER,
-        WHEAT_BEER
+        WHEAT_BEER;
+
+        BeerType() {
+        }
 }
