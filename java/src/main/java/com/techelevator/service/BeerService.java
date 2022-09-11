@@ -28,7 +28,12 @@ public class BeerService {
     public List<Beer> getBeersByBrewer(Principal principal) {
         User currentUser = userDao.findByUsername(principal.getName());
 
-        return currentUser.getBrewery().getBeers();
+//        return currentUser.getBrewery().getBeers();
+
+        //get current user id
+        // get brewery that matches user id
+        // get all beers that match brewery id
+        return null;
     }
 
 }

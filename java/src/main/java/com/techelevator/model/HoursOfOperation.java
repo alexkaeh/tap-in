@@ -16,13 +16,15 @@ public class HoursOfOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hours_of_operation_seq")
     @SequenceGenerator(name = "hours_of_operation_seq")
-    @Column(name = "hoo_id", nullable = false)
-    private Long hooId;
+    @Column(name = "hours_of_operation_id", nullable = false)
+    private Long hoursOfOperationId;
 
     @ManyToOne // default fetch eager
     @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "day")
     private Day day;
 
     @Column(name ="open_time", columnDefinition = "TIME")
@@ -32,7 +34,7 @@ public class HoursOfOperation {
     private LocalTime closeTime;
 
     public HoursOfOperation(Long hooId, Brewery brewery, Day day, LocalTime openTime, LocalTime closeTime) {
-        this.hooId = hooId;
+        this.hoursOfOperationId = hooId;
         this.brewery = brewery;
         this.day = day;
         this.openTime = openTime;

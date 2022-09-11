@@ -3,6 +3,7 @@ package com.techelevator.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,6 +31,8 @@ public class Beer {
     private String description;
     private String image;
     private double abv;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "beer_type")
     private BeerType beerType;
     private boolean isActive;
 }
