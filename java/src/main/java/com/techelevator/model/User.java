@@ -32,9 +32,7 @@ public class User {
 
    @JsonIgnore
    private boolean activated;
-
-   private String role;
-
+   
    @JsonIgnore
    @Transient
    private Set<Authority> authorities = new HashSet<>();
