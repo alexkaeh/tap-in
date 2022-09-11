@@ -9,6 +9,7 @@ import NewBreweryPage from "../Pages/NewBreweryPage";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Home from "../Pages/Home";
+import Footer from "../Footer";
 
 const mapStateToProps = (state) => {
   return {
@@ -49,9 +50,10 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-        <nav>
-          <div>
+      <div className="main">
+        <header>
+          <h1>LOGO</h1>
+          <nav className="nav-menu">
             <Link to="/breweries">Breweries</Link>
             <Link to="/beers">Beers</Link>
             <Link to="/edit">Edit</Link>
@@ -67,11 +69,11 @@ class Main extends Component {
             )}
 
             <Redirect to="/home" />
-          </div>
-        </nav>
+          </nav>
+        </header>
         <Switch>
           <Route path="/breweries" component={() => <BreweriesPage />} />
-          <Route path="/beers" component={() => <BeersPage /> } />
+          <Route path="/beers" component={() => <BeersPage />} />
           <Route path="/edit" component={() => <EditPage />} />
           <Route path="/new" component={() => <NewBreweryPage />} />
 
@@ -80,6 +82,7 @@ class Main extends Component {
           <Route path="/home" component={() => <Home />} />
           <Redirect to="/home" />
         </Switch>
+        <Footer />
       </div>
     );
   }
