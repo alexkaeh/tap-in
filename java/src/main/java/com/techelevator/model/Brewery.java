@@ -37,8 +37,8 @@ public class Brewery {
     @Column(name = "brewery_name", nullable = false)
     private String breweryName;
 
-    @OneToMany(mappedBy = "brewery")
-    List<Beer> beers;
+//    @OneToMany(mappedBy = "brewery")
+//    List<Beer> beers;
 
     private String contactInfo;
     private String address;

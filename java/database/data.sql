@@ -10,7 +10,7 @@ values
 -- insert hours of operation
 
 -- insert beer
-insert into beer (beer_id, brewery_id, beer_name, description, abv, beer_type, is_active)
+insert into beer (beer_id, brewery_brewery_id, beer_name, description, abv, beer_type, is_active)
 values
 (3001, 2001, 'Good Vibrations', 'Using his secret "Good Vibrations blend," our brew master has crafted a white ale that shares a complexity of spice flavors while keeping it real with a mild tartness and zesty orange flavor. A little summertime chillin with mans best friend and a refreshing Good Vibrations Spiced White Ale is just what the doctor ordered.', 4.8, 'Wheat Beer', true),
 (3002, 2001, 'Dillinger Brown Ale', 'An American Brown Ale from the hometown of John H. Dillinger Jr. Deep roasted malt flavors give way to slightly dry, nutty finish.', 6.5, 'American Brown Ale', true),

@@ -28,6 +28,7 @@ public class Beer {
     private List<Review> reviews = new java.util.ArrayList<>();
 
     private String beerName;
+    @Column (columnDefinition = "varchar (2048)")
     private String description;
     private String image;
     private double abv;
