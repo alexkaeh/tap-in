@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
+import { Routes, Route, Link, withRouter } from "react-router-dom";
 import { addToken, deleteUser } from "../../Redux/actionCreators";
 import { connect } from "react-redux";
 import BreweriesPage from "../Pages/BreweriesPage";
@@ -10,6 +10,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Home from "../Pages/Home";
 import Footer from "../Footer";
+import BreweryDetails from "../Pages/BreweryDetails";
 
 const mapStateToProps = (state) => {
   return {
@@ -37,17 +38,6 @@ class Main extends Component {
     this.props.deleteUser();
   };
 
-  /*
-    Links to
-    - find breweries
-    - find beers
-    - edit brewery info
-      - edit beer list
-    - login / logout
-    - add brewery
-
-  */
-
   render() {
     return (
       <div className="main">
@@ -67,12 +57,11 @@ class Main extends Component {
             ) : (
               <Link to="/login">Login</Link>
             )}
-
-            <Redirect to="/home" />
           </nav>
         </header>
-        <Switch>
+        <Routes>
           <Route path="/breweries" component={() => <BreweriesPage />} />
+          <Route path="/breweries/:id" component={() => <BreweryDetails />} />
           <Route path="/beers" component={() => <BeersPage />} />
           <Route path="/edit" component={() => <EditPage />} />
           <Route path="/new" component={() => <NewBreweryPage />} />
@@ -80,8 +69,7 @@ class Main extends Component {
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/home" component={() => <Home />} />
-          <Redirect to="/home" />
-        </Switch>
+        </Routes>
         <Footer />
       </div>
     );

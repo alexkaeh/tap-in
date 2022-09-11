@@ -1,19 +1,28 @@
-import useFetch from "../useFetch";
-import BreweryDetails from "./BreweryDetails";
+import React from "react";
+import { Link } from "react-router-dom";
+
 
 const BreweriesPage = () => {
-  const {
-    data: breweries,
-    error,
-    isPending,
-  } = useFetch("http://localhost:8001/api/brewery/");
+  const [allBreweries, setAllBreweries] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("http://localhost:8081/api/brewery")
+      .then((res) => res.json())
+      .then((data) => setAllBreweries(data));
+  }, []);
+
+  function renderBreweries(arr) {
+    return arr.map((item) => (
+      <li key={item.breweryId}>
+        <Link to={`/breweries/${item.breweryId}`}>{item.breweryName}</Link>
+      </li>
+    ));
+  }
 
   return (
     <div>
       <h1>Breweries Page</h1>
-      {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {breweries && <BreweryDetails breweries={breweries} />}
+      <ul>{renderBreweries(allBreweries)}</ul>
     </div>
   );
 };
