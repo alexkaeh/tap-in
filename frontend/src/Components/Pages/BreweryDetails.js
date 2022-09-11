@@ -3,14 +3,15 @@ import { useParams } from "react-router-dom";
 
 const BreweryDetails = () => {
   const { id } = useParams();
-  const [brewery, setBrewery] = React.useState([]);
+  const [brewery, setBrewery] = React.useState({});
 
   React.useEffect(() => {
     fetch(`http://localhost:8081/api/brewery/${id}`)
       .then((res) => res.json())
       .then((data) => setBrewery(data));
-      console.log(id, brewery)
-  }, [id]);
+  }, []);
+
+  console.log(brewery)
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Routes, Route, Link, withRouter } from "react-router-dom";
+import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
 import { addToken, deleteUser } from "../../Redux/actionCreators";
 import { connect } from "react-redux";
 import BreweriesPage from "../Pages/BreweriesPage";
@@ -38,6 +38,17 @@ class Main extends Component {
     this.props.deleteUser();
   };
 
+  /*
+    Links to
+    - find breweries
+    - find beers
+    - edit brewery info
+      - edit beer list
+    - login / logout
+    - add brewery
+
+  */
+
   render() {
     return (
       <div className="main">
@@ -59,9 +70,9 @@ class Main extends Component {
             )}
           </nav>
         </header>
-        <Routes>
-          <Route path="/breweries" component={() => <BreweriesPage />} />
-          <Route path="/breweries/:id" component={() => <BreweryDetails />} />
+        <Switch>
+          <Route exact path="/breweries" component={() => <BreweriesPage />} />
+          <Route exact path="/breweries/:id" component={() => <BreweryDetails />} />
           <Route path="/beers" component={() => <BeersPage />} />
           <Route path="/edit" component={() => <EditPage />} />
           <Route path="/new" component={() => <NewBreweryPage />} />
@@ -69,7 +80,7 @@ class Main extends Component {
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/home" component={() => <Home />} />
-        </Routes>
+        </Switch>
         <Footer />
       </div>
     );
