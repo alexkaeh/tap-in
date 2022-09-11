@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 function Home(props) {
     return(
         <div>
-            You must be authorized to see this page.
+            <h1>Home Page</h1>
         </div>
     )
 }

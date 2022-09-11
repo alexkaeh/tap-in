@@ -1,56 +1,88 @@
-import {Component} from 'react'
-import {Switch, Route, Redirect, Link} from 'react-router-dom'
-import Login from '../Login/Login'
-import Register from '../Register/Register'
-import Home from '../Home/Home'
-import {addToken, deleteUser} from '../../Redux/actionCreators'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import { Component } from "react";
+import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
+import { addToken, deleteUser } from "../../Redux/actionCreators";
+import { connect } from "react-redux";
+import BreweriesPage from "../Pages/BreweriesPage";
+import BeersPage from "../Pages/BeersPage";
+import EditPage from "../Pages/EditPage";
+import NewBreweryPage from "../Pages/NewBreweryPage";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import Home from "../Pages/Home";
 
-const mapStateToProps = state => {
-    return {
-        token: state.token,
-        user: state.user
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+    user: state.user,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-    addToken: () => { dispatch(addToken()) },
-    deleteUser: () => { dispatch(deleteUser())}
+  addToken: () => {
+    dispatch(addToken());
+  },
+  deleteUser: () => {
+    dispatch(deleteUser());
+  },
 });
 
 class Main extends Component {
-    constructor(props){
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    handleLogout = () => {
-        this.props.addToken("")
-        this.props.deleteUser()
-    }
+  handleLogout = () => {
+    this.props.addToken("");
+    this.props.deleteUser();
+  };
 
-    render(){
-        return(
-            <div>
-                {this.props.token.token !== undefined ?
-                        <div>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/home'/>
+  /*
+    Links to
+    - find breweries
+    - find beers
+    - edit brewery info
+      - edit beer list
+    - login / logout
+    - add brewery
 
-                        </div>  
-                    : 
-                        <Link to='/login'>Home | </Link>
-                }
-                <Switch>
-                    <Route path='/login' component={() => <Login/>}/>
-                    <Route path='/register'component={() => <Register/>}/>
-                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
-                    <Redirect to='/login'/>
-                </Switch>
-            </div>
-        )
-    }
-} 
+  */
+
+  render() {
+    return (
+      <div>
+        <nav>
+          <div>
+            <Link to="/breweries">Breweries</Link>
+            <Link to="/beers">Beers</Link>
+            <Link to="/edit">Edit</Link>
+            <Link to="/new">Add Brewery</Link>
+            <Link to="/home">Home</Link>
+
+            {this.props.token.token !== undefined ? (
+              <Link to="/login" onClick={this.handleLogout}>
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+
+            <Redirect to="/home" />
+          </div>
+        </nav>
+        <Switch>
+          <Route path="/breweries" component={() => <BreweriesPage />} />
+          <Route path="/beers" component={() => <BeersPage /> } />
+          <Route path="/edit" component={() => <EditPage />} />
+          <Route path="/new" component={() => <NewBreweryPage />} />
+
+          <Route path="/login" component={() => <Login />} />
+          <Route path="/register" component={() => <Register />} />
+          <Route path="/home" component={() => <Home />} />
+          <Redirect to="/home" />
+        </Switch>
+      </div>
+    );
+  }
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
