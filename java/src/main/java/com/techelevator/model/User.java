@@ -19,16 +19,19 @@ public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   @Column(name = "user_id", nullable = false)
+   @Column(name = "user_id")
    private Long id;
 
    private String username;
 
    @JsonIgnore
+   @Column(name = "password_hash")
    private String password;
 
    @JsonIgnore
    private boolean activated;
+
+   private String role;
 
    @JsonIgnore
    @Transient

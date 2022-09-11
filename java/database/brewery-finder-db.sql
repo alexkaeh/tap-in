@@ -54,7 +54,7 @@ create table br_user (
     user_id int not null default nextval('seq_user_id'),
     username varchar(50) not null,
     password_hash varchar(200),
-    password_salt varchar(50),
+    -- password_salt varchar(50), 
     account_type user_role,
     constraint pk_brewery_user primary key (user_id),
     constraint uq_username unique (username)
@@ -68,9 +68,9 @@ create sequence seq_brewery_id
 
 create table brewery (
     brewery_id int not null default nextval('seq_brewery_id'),
-    days_hours_operation varchar(50),
+    -- hours_of_operation point back to here
     brewer_id int not null,
-    brewery_name varchar(50),
+    brewery_name varchar(50) NOT NULL,
     contact_info varchar(200),
     address varchar(200),
     history_desc varchar(500),
@@ -89,9 +89,9 @@ create sequence seq_beer_id
 create table beer (
     beer_id int not null default nextval('seq_beer_id'),
     brewery_id int not null,
-    beer_name varchar(50) not null,
+    beer_name varchar(50) NOT NULL,
     description varchar(1000),
-    image varchar(100),
+    image varchar(100) NOT NULL,
     abv decimal,
     beer_type type,
     is_active boolean,
