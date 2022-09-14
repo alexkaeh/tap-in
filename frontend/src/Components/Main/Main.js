@@ -4,7 +4,7 @@ import { addToken, deleteUser } from "../../Redux/actionCreators";
 import { connect } from "react-redux";
 import BreweriesPage from "../Pages/BreweriesPage";
 import BeersPage from "../Pages/BeersPage";
-import EditPage from "../Pages/EditPage";
+import EditPage from "../Pages/EditBreweriesPage";
 import NewBreweryPage from "../Pages/NewBreweryPage";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
