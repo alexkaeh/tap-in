@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
+import com.techelevator.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.techelevator.dao.UserDao;
 import com.techelevator.model.LoginDTO;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
@@ -25,14 +26,18 @@ import com.techelevator.security.jwt.TokenProvider;
 @CrossOrigin
 public class AuthenticationController {
 
+    @Autowired
     private final TokenProvider tokenProvider;
+    @Autowired
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private UserDao userDao;
+    @Autowired
+    private final UserService userService;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao) {
+    @Autowired
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
-        this.userDao = userDao;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -45,7 +50,7 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication, false);
         
-        User user = userDao.findByUsername(loginDto.getUsername());
+        User user = userService.findByUsername(loginDto.getUsername());
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
@@ -56,10 +61,14 @@ public class AuthenticationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDTO newUser) {
         try {
-            User user = userDao.findByUsername(newUser.getUsername());
-            throw new UserAlreadyExistsException();
+            User user = userService.findByUsername(newUser.getUsername());
+            if (user == null) {
+                userService.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            } else {
+                throw new UserAlreadyExistsException();
+            }
         } catch (UsernameNotFoundException e) {
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            userService.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }
 

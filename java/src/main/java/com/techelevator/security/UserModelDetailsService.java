@@ -1,10 +1,11 @@
 package com.techelevator.security;
 
 
-import com.techelevator.dao.UserDao;
+import com.techelevator.dao.UserRepository;
 import com.techelevator.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,17 +23,24 @@ public class UserModelDetailsService implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(UserModelDetailsService.class);
 
-    private final UserDao userDao;
+//    private final UserDao userDao;
 
-    public UserModelDetailsService(UserDao userDao) {
-        this.userDao = userDao;
+//    public UserModelDetailsService(UserDao userDao) {
+//        this.userDao = userDao;
+//    }
+    @Autowired
+    private final UserRepository userRepo;
+
+    @Autowired
+    public UserModelDetailsService(UserRepository userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Override
     public UserDetails loadUserByUsername(final String login) {
         log.debug("Authenticating user '{}'", login);
         String lowercaseLogin = login.toLowerCase();
-        return createSpringSecurityUser(lowercaseLogin, userDao.findByUsername(lowercaseLogin));
+        return createSpringSecurityUser(lowercaseLogin, userRepo.findByUsername(lowercaseLogin));
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(String lowercaseLogin, User user) {

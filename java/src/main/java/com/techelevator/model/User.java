@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.techelevator.enumerated.AccountType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,31 +19,36 @@ public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   @Column(name = "user_id", nullable = false)
+   @Column(name = "user_id")
    private Long id;
 
    private String username;
 
    @JsonIgnore
+   @Column(name = "password_hash")
    private String password;
+
+   private String role;
 
    @JsonIgnore
    private boolean activated;
-
+   
    @JsonIgnore
    @Transient
    private Set<Authority> authorities = new HashSet<>();
 
 //   Added fields
+   @Enumerated(EnumType.STRING)
+   @Column(name = "account_type")
    private AccountType accountType;
 
 //   User <-> Brewery relationship requires join table to account for null
 //   values when user does not have a brewery
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinTable(name = "brewer_brewery",
-      joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
-      inverseJoinColumns = { @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id") })
-   private Brewery brewery;
+//   @OneToOne(cascade = CascadeType.ALL)
+//   @JoinTable(name = "brewer_brewery",
+//           joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
+//           inverseJoinColumns = { @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id") })
+//   private Brewery brewery;
 
    public User(Long id, String username, String password, String authorities) {
       this.id = id;

@@ -1,9 +1,9 @@
 package com.techelevator.model;
 
-import com.techelevator.enumerated.BeerType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Beer {
     @Column(name = "beer_id", nullable = false)
     private Long beerId;
 
-    @ManyToOne()
+    @ManyToOne() // fixme
     @JoinColumn()
     private Brewery brewery;
 
@@ -28,9 +28,12 @@ public class Beer {
     private List<Review> reviews = new java.util.ArrayList<>();
 
     private String beerName;
+    @Column (columnDefinition = "varchar (2048)")
     private String description;
     private String image;
     private double abv;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "beer_type")
     private BeerType beerType;
     private boolean isActive;
 }

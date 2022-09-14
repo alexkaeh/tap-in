@@ -27,8 +27,8 @@ public class Brewery {
     @Column(name = "brewery_id", nullable = false)
     private Long breweryId;
 
-    @OneToOne(mappedBy = "brewery")
-    private User brewer;
+//    @OneToOne(mappedBy = "brewery")
+//    private User brewer;
 
 //    no actual field in database due to one-to-many relationship
     @OneToMany(mappedBy = "brewery")
@@ -36,6 +36,9 @@ public class Brewery {
 
     @Column(name = "brewery_name", nullable = false)
     private String breweryName;
+
+//    @OneToMany(mappedBy = "brewery")
+//    List<Beer> beers;
 
     private String contactInfo;
     private String address;

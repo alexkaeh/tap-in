@@ -1,4 +1,4 @@
-package com.techelevator.enumerated;
+package com.techelevator.model;
 
 public enum BeerType {
         LAGER,
@@ -8,5 +8,8 @@ public enum BeerType {
         STOUT,
         PORTER,
         BELGIAN_BEER,
-        WHEAT_BEER
+        WHEAT_BEER;
+
+        BeerType() {
+        }
 }
