@@ -4,7 +4,7 @@ import { addToken, deleteUser } from "../../Redux/actionCreators";
 import { connect } from "react-redux";
 import BreweriesPage from "../Pages/BreweriesPage";
 import BeersPage from "../Pages/BeersPage";
-import EditPage from "../Pages/EditBreweriesPage";
+import EditBreweriesPage from "../Pages/EditBreweriesPage";
 import NewBreweryPage from "../Pages/NewBreweryPage";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -74,7 +74,8 @@ class Main extends Component {
           <Route exact path="/breweries" component={() => <BreweriesPage />} />
           <Route exact path="/breweries/:id" component={() => <BreweryDetails />} />
           <Route path="/beers" component={() => <BeersPage />} />
-          <Route path="/edit" component={() => <EditPage />} />
+          <Route exact path="/edit" component={() => <EditBreweriesPage />} />
+          <Route exact path="/edit/beers" component={() => <EditBeersPage />} />
           <Route path="/new" component={() => <NewBreweryPage />} />
 
           <Route path="/login" component={() => <Login />} />
