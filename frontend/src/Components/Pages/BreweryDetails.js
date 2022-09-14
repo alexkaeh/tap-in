@@ -16,7 +16,7 @@ const BreweryDetails = () => {
   return (
     <div>
       <h1>Brewery Details</h1>
-      <p>Name: {brewery.brewryName}</p>
+      <p>Name: {brewery.breweryName}</p>
       <p>Contact: {brewery.contactInfo}</p>
       <p>Address: {brewery.address}</p>
     </div>

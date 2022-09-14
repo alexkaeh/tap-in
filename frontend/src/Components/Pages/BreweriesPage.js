@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 const BreweriesPage = () => {
   const [allBreweries, setAllBreweries] = React.useState([]);
 
-  console.log(allBreweries)
-
   React.useEffect(() => {
     fetch("http://localhost:8081/api/brewery")
       .then((res) => res.json())
