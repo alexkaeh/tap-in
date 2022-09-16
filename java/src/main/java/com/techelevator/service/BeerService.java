@@ -22,18 +22,18 @@ public class BeerService {
     private final BeerRepository beerRepo;
     @Autowired
     private final BreweryRepository breweryRepo;
-    @Autowired //Necessary to autowire?
+    @Autowired // Necessary to autowire?
     private final UserDao userDao;
 
     public List<Beer> getBeersByBrewer(Principal principal) {
         User currentUser = userDao.findByUsername(principal.getName());
 
-//        return currentUser.getBrewery().getBeers();
+        // return currentUser.getBrewery().getBeers();
 
-        //get current user id
+        // get current user id
         // get brewery that matches user id
         // get all beers that match brewery id
         return null;
     }
-
+    // this is a test
 }
