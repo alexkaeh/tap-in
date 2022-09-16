@@ -57,6 +57,9 @@ class Main extends Component {
           <nav className="nav-menu">
             <Link to="/breweries">Breweries</Link>
             <Link to="/beers">Beers</Link>
+            <Link to="/ListOfBeers">Beers</Link>
+            <Link to="/BeerDetailReviews">Beer Info and Reviews</Link>
+
             <Link to="/edit">Edit</Link>
             <Link to="/new">Add Brewery</Link>
             <Link to="/home">Home</Link>
@@ -72,12 +75,22 @@ class Main extends Component {
         </header>
         <Switch>
           <Route exact path="/breweries" component={() => <BreweriesPage />} />
-          <Route exact path="/breweries/:id" component={() => <BreweryDetails />} />
+          <Route
+            exact
+            path="/breweries/:id"
+            component={() => <BreweryDetails />}
+          />
           <Route path="/beers" component={() => <BeersPage />} />
+          <Route exact path="/ListOfBeers" component={() => <ListOfBeers />} />
+          <Route exact path="/AddBrewery" component={() => <AddBrewery />} />
           <Route exact path="/edit" component={() => <EditBreweriesPage />} />
           <Route exact path="/edit/beers" component={() => <EditBeersPage />} />
+          <Route
+            exact
+            path="/BeerDetailReviews"
+            component={() => <BeerDetailReviews />}
+          />
           <Route path="/new" component={() => <NewBreweryPage />} />
-
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/home" component={() => <Home />} />
