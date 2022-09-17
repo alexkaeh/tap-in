@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const BeersPage = () => {
+const BeersListPage = () => {
   const [allBeers, setAllBeers] = React.useState([]);
 
   React.useEffect(() => {
@@ -28,4 +28,4 @@ const BeersPage = () => {
   );
 };
 
-export default BeersPage;
+export default BeersListPage;

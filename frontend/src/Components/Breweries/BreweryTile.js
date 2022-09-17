@@ -1,6 +1,6 @@
-import BreweryDetails from "./BreweryDetails";
+import BreweryDetails from "./BreweryDetailsPage";
 
-const BreweryDetailsPage = () => {
+const BreweryTile = () => {
   return (
     <div>
       <h1>Brewery Details Page</h1>
@@ -10,4 +10,4 @@ const BreweryDetailsPage = () => {
   );
 };
 
-export default BreweryDetailsPage;
+export default BreweryTile;

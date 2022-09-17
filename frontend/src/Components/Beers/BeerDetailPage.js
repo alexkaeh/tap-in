@@ -1,4 +1,4 @@
-const BeerDetailReviews = () => {
+const BeerDetailPage = () => {
   return (
     <div>
       <h1>Beer Details and Reviews</h1>
@@ -9,4 +9,4 @@ const BeerDetailReviews = () => {
   );
 };
 
-export default BeerDetailReviews;
+export default BeerDetailPage;

@@ -1,16 +1,17 @@
 import { Component } from "react";
 import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
-import { addToken, deleteUser } from "../../Redux/actionCreators";
+import { addToken, deleteUser } from "../Redux/actionCreators";
 import { connect } from "react-redux";
-import BreweriesPage from "../Pages/BreweriesPage";
-import BeersPage from "../Pages/BeersPage";
-import EditBreweriesPage from "../Pages/EditBreweriesPage";
-import NewBreweryPage from "../Pages/NewBreweryPage";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import Home from "../Pages/Home";
-import Footer from "../Footer";
-import BreweryDetails from "../Pages/BreweryDetails";
+import BreweriesPage from "./Breweries/BreweriesTilesPage";
+import BeersPage from "./Beers/BeersListPage";
+import EditBreweriesPage from "./Edit/EditBreweriesBeersPage";
+
+import Login from "./Login/Login";
+import Register from "./Login/Register";
+import Home from "./Home/Home";
+import Footer from "./Footer";
+import BreweryDetails from "./Breweries/BreweryDetailsPage";
+import AddBrewery from "./AddBrewery/AddBrewery";
 
 const mapStateToProps = (state) => {
   return {
@@ -90,7 +91,7 @@ class Main extends Component {
             path="/BeerDetailReviews"
             component={() => <BeerDetailReviews />}
           />
-          <Route path="/new" component={() => <NewBreweryPage />} />
+
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/home" component={() => <Home />} />
