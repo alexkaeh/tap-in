@@ -1,16 +1,17 @@
 import { Component } from "react";
 import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
-import { addToken, deleteUser } from "../../Redux/actionCreators";
+import { addToken, deleteUser } from "../Redux/actionCreators";
 import { connect } from "react-redux";
-import BreweriesPage from "../Pages/BreweriesPage";
-import BeersPage from "../Pages/BeersPage";
-import EditBreweriesPage from "../Pages/EditBreweriesPage";
-import NewBreweryPage from "../Pages/NewBreweryPage";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import Home from "../Pages/Home";
-import Footer from "../Footer";
-import BreweryDetails from "../Pages/BreweryDetails";
+import BreweriesPage from "./Breweries/BreweriesTilesPage";
+import BeersPage from "./Beers/BeersListPage";
+import EditBreweriesPage from "./Edit/EditBreweriesBeersPage";
+
+import Login from "./Login/Login";
+import Register from "./Login/Register";
+import Home from "./Home/Home";
+import Footer from "./Footer";
+import BreweryDetails from "./Breweries/BreweryDetailsPage";
+import AddBrewery from "./AddBrewery/AddBrewery";
 
 const mapStateToProps = (state) => {
   return {
@@ -57,6 +58,9 @@ class Main extends Component {
           <nav className="nav-menu">
             <Link to="/breweries">Breweries</Link>
             <Link to="/beers">Beers</Link>
+            <Link to="/ListOfBeers">Beers</Link>
+            <Link to="/BeerDetailReviews">Beer Info and Reviews</Link>
+
             <Link to="/edit">Edit</Link>
             <Link to="/new">Add Brewery</Link>
             <Link to="/home">Home</Link>
@@ -72,11 +76,21 @@ class Main extends Component {
         </header>
         <Switch>
           <Route exact path="/breweries" component={() => <BreweriesPage />} />
-          <Route exact path="/breweries/:id" component={() => <BreweryDetails />} />
+          <Route
+            exact
+            path="/breweries/:id"
+            component={() => <BreweryDetails />}
+          />
           <Route path="/beers" component={() => <BeersPage />} />
+          <Route exact path="/ListOfBeers" component={() => <ListOfBeers />} />
+          <Route exact path="/AddBrewery" component={() => <AddBrewery />} />
           <Route exact path="/edit" component={() => <EditBreweriesPage />} />
           <Route exact path="/edit/beers" component={() => <EditBeersPage />} />
-          <Route path="/new" component={() => <NewBreweryPage />} />
+          <Route
+            exact
+            path="/BeerDetailReviews"
+            component={() => <BeerDetailReviews />}
+          />
 
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
