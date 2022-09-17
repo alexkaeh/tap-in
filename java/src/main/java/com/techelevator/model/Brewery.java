@@ -41,7 +41,7 @@ public class Brewery {
 //            @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id")})
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private Brewery brewery;
+    private User user;
 
     // @OneToMany(mappedBy = "brewery")
     // List<Beer> beers;

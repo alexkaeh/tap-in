@@ -4,10 +4,7 @@ import com.techelevator.model.Brewery;
 import com.techelevator.service.BreweryService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -27,8 +24,24 @@ public class BreweryController {
     }
 
     @GetMapping("/my")
-    public Brewery getBreweryByCurrentUser(Principal principal) {
-        return null;
+    public Brewery getBreweryByCurrentUser() {
+        return breweryService.getBreweryByCurrentUser();
     }
+
+    @GetMapping("/{id}")
+    public Brewery getBreweryById(@PathVariable Long id) {
+        return breweryService.getBreweryById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updateBreweryInfo(@PathVariable Long id, @RequestBody Brewery updatedBrewery) {
+        breweryService.updateBreweryInfo(id, updatedBrewery);
+    }
+
+    @GetMapping("/unassigned")
+    public List<Brewery> getOrphanBreweries() {
+        return breweryService.getOrphanBreweries();
+    }
+
 
 }
