@@ -1,9 +1,7 @@
 /**
  * Represents each individual brewery.
- *
+ * <p>
  * Only one brewer is permitted per brewery
- *
- *
  */
 
 package com.techelevator.model;
@@ -37,10 +35,12 @@ public class Brewery {
     @Column(name = "brewery_name", nullable = false)
     private String breweryName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_brewery", joinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = {
-                    @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id") })
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_brewery", joinColumns = {
+//            @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
+//            @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id")})
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private Brewery brewery;
 
     // @OneToMany(mappedBy = "brewery")
