@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-//@Transactional
+// @Transactional
 @AllArgsConstructor
 public class BreweryService {
 
@@ -19,4 +19,5 @@ public class BreweryService {
     public List<Brewery> getAllBreweries() {
         return breweryRepo.findAll();
     }
+
 }

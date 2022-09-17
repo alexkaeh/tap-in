@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.dto;
 
 /**
  * DTO for storing a user's credentials.
@@ -27,8 +27,8 @@ public class LoginDTO {
    @Override
    public String toString() {
       return "LoginDTO{" +
-              "username='" + username + '\'' +
-              ", password='" + password + '\'' +
-              '}';
+            "username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            '}';
    }
 }
