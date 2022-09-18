@@ -41,6 +41,7 @@ public class UserService {
         newUser.setUsername(username);
         newUser.setPassword(password_hash);
         newUser.setRole(role);
+        newUser.setActivated(true);
         try {
     /* Using saveAndFlush allowed us to get updated information more immediately,
     without pulling from the repository again */

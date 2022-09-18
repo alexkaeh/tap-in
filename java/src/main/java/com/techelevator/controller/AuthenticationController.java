@@ -15,8 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
+import com.techelevator.dto.LoginDTO;
+import com.techelevator.dto.RegisterUserDTO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
@@ -34,7 +34,8 @@ public class AuthenticationController {
     private final UserService userService;
 
     @Autowired
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService) {
+    public AuthenticationController(TokenProvider tokenProvider,
+            AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userService = userService;
@@ -43,13 +44,13 @@ public class AuthenticationController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDTO loginDto) {
 
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                loginDto.getUsername(), loginDto.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication, false);
-        
+
         User user = userService.findByUsername(loginDto.getUsername());
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -63,12 +64,12 @@ public class AuthenticationController {
         try {
             User user = userService.findByUsername(newUser.getUsername());
             if (user == null) {
-                userService.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+                userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
             } else {
                 throw new UserAlreadyExistsException();
             }
         } catch (UsernameNotFoundException e) {
-            userService.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            userService.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
         }
     }
 
@@ -95,13 +96,12 @@ public class AuthenticationController {
         }
 
         @JsonProperty("user")
-		public User getUser() {
-			return user;
-		}
+        public User getUser() {
+            return user;
+        }
 
-		public void setUser(User user) {
-			this.user = user;
-		}
+        public void setUser(User user) {
+            this.user = user;
+        }
     }
 }
-

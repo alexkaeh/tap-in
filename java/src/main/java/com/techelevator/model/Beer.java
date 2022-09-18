@@ -21,14 +21,14 @@ public class Beer {
     private Long beerId;
 
     @ManyToOne() // fixme
-    @JoinColumn()
+    @JoinColumn(name = "brewery_id")
     private Brewery brewery;
 
     @OneToMany(mappedBy = "beer")
     private List<Review> reviews = new java.util.ArrayList<>();
 
     private String beerName;
-    @Column (columnDefinition = "varchar (2048)")
+    @Column(columnDefinition = "varchar (2048)")
     private String description;
     private String image;
     private double abv;

@@ -4,6 +4,7 @@ import com.techelevator.dao.BeerRepository;
 import com.techelevator.dao.BreweryRepository;
 import com.techelevator.dao.JdbcUserDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.UserRepository;
 import com.techelevator.model.Beer;
 import com.techelevator.model.Brewery;
 import com.techelevator.model.User;
@@ -25,13 +26,13 @@ public class BeerService {
     private final BreweryRepository breweryRepo;
     @Autowired // Necessary to autowire?
     private final UserDao userDao;
-
-    public List<Beer> getAllBeers() {
-        return beerRepo.findAll();
-    }
+    @Autowired
+    private final UserRepository userRepo;
 
     public List<Beer> getBeersByBrewer(Principal principal) {
-        // Optional<Brewery> userBrewery = breweryRepo.findById(principal);
+        User currentUser = userDao.findByUsername(principal.getName());
+        // Brewery myBrewery = breweryRepo.f
+        // List<Beer> myBeers = beerRepo.findAllByUser(currentUser);
         // return currentUser.getBrewery().getBeers();
 
         // get current user id
@@ -40,12 +41,8 @@ public class BeerService {
         return null;
     }
 
-    public Optional<Beer> getBeerById(Long id) {
-        return beerRepo.findById(id);
+    public List<Beer> getAllBeers() {
+        return beerRepo.findAll();
     }
 
-    public Beer addBeer(Beer newBeer) {
-        beerRepo.add(newBeer);
-        return newBeer;
-    }
 }
