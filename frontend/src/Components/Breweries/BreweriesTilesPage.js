@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const BreweriesPage = () => {
+const BreweriesTilesPage = () => {
   const [allBreweries, setAllBreweries] = React.useState([]);
 
   React.useEffect(() => {
@@ -30,4 +30,4 @@ const BreweriesPage = () => {
   );
 };
 
-export default BreweriesPage;
+export default BreweriesTilesPage;

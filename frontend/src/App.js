@@ -1,4 +1,4 @@
-import Main from './Components/Main/Main'
+import Main from './Components/Main'
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 import {ConfigureStore} from './Redux/configureStore'

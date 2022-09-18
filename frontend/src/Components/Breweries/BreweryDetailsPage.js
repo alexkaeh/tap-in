@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import { useParams } from "react-router-dom";
 
-const BreweryDetails = () => {
+const BreweryDetailsPage = () => {
   const { id } = useParams();
   const [brewery, setBrewery] = React.useState({});
 
@@ -11,7 +11,7 @@ const BreweryDetails = () => {
       .then((data) => setBrewery(data));
   }, []);
 
-  console.log(brewery)
+  console.log(brewery);
 
   return (
     <div>
@@ -23,4 +23,4 @@ const BreweryDetails = () => {
   );
 };
 
-export default BreweryDetails;
+export default BreweryDetailsPage;
