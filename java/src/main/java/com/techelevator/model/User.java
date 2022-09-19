@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Getter
@@ -42,13 +43,10 @@ public class User {
    @Column(name = "account_type")
    private AccountType accountType;
 
-//   User <-> Brewery relationship requires join table to account for null
-//   values when user does not have a brewery
-//   @OneToOne(cascade = CascadeType.ALL)
-//   @JoinTable(name = "brewer_brewery",
-//           joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
-//           inverseJoinColumns = { @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id") })
-//   private Brewery brewery;
+   @JsonIgnore
+   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+   @PrimaryKeyJoinColumn
+   private Brewery brewery;
 
    public User(Long id, String username, String password, String authorities) {
       this.id = id;
