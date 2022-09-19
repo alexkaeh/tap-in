@@ -29,16 +29,10 @@ public class BeerService {
     @Autowired
     private final UserRepository userRepo;
 
-    public List<Beer> getBeersByBrewer(Principal principal) {
-        User currentUser = userDao.findByUsername(principal.getName());
-        // Brewery myBrewery = breweryRepo.f
-        // List<Beer> myBeers = beerRepo.findAllByUser(currentUser);
-        // return currentUser.getBrewery().getBeers();
-
-        // get current user id
-        // get brewery that matches user id
-        // get all beers that match brewery id
-        return null;
+    public List<Beer> getBeersByBrewer(String username) {
+        Long userId = userDao.findByUsername(username).getId();
+        Long breweryId = breweryRepo.findByUserId(userId).orElseThrow().getBreweryId();
+        return beerRepo.findByBreweryId(breweryId);
     }
 
     public List<Beer> getAllBeers() {

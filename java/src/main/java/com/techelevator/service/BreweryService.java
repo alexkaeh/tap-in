@@ -41,4 +41,8 @@ public class BreweryService {
     public List<Brewery> getOrphanBreweries() {
         return breweryRepo.findByUserIdIsNull();
     }
+
+    public Brewery createNewBrewery(Brewery newBrewery) {
+        return breweryRepo.saveAndFlush(newBrewery);
+    }
 }

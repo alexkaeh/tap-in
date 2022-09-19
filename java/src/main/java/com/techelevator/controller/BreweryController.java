@@ -4,6 +4,8 @@ import com.techelevator.model.Brewery;
 import com.techelevator.service.BreweryService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -21,6 +23,13 @@ public class BreweryController {
     @GetMapping("")
     public List<Brewery> getAllBreweries() {
         return breweryService.getAllBreweries();
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Brewery> createNewBrewery(@PathVariable Long id, @RequestBody Brewery newBrewery) {
+        // TODO Does POST need an id path variable?
+        newBrewery.setBreweryId(id);
+        return new ResponseEntity<>(breweryService.createNewBrewery(newBrewery), HttpStatus.CREATED);
     }
 
     @GetMapping("/my")

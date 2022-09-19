@@ -1,9 +1,12 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +25,9 @@ public class Beer {
 
     @ManyToOne() // fixme
     @JoinColumn(name = "brewery_id")
-    private Brewery brewery;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Brewery breweryId;
 
     @OneToMany(mappedBy = "beer")
     private List<Review> reviews = new java.util.ArrayList<>();

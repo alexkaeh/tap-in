@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.model.Beer;
 import com.techelevator.service.BeerService;
+import com.techelevator.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,8 +23,9 @@ public class BeerController {
     private final BeerService beerService;
 
     @GetMapping("")
-    public List<Beer> getBeersByBrewer(Principal principal) {
-        return beerService.getBeersByBrewer(principal);
+    public List<Beer> getBeersByBrewer() {
+        String username = "bob";
+        return beerService.getBeersByBrewer(username);
     }
 
 }

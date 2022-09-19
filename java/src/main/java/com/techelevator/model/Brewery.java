@@ -6,6 +6,7 @@
 
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,6 @@ public class Brewery {
     @Column(name = "brewery_id", nullable = false)
     private Long breweryId;
 
-    // @OneToOne(mappedBy = "brewery")
-    // private User brewer;
-
     // no actual field in database due to one-to-many relationship
     @OneToMany(mappedBy = "brewery")
     List<HoursOfOperation> daysAndHoursOfOperation;
@@ -35,16 +33,17 @@ public class Brewery {
     @Column(name = "brewery_name", nullable = false)
     private String breweryName;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinTable(name = "users_brewery", joinColumns = {
-//            @JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {
-//            @JoinColumn(name = "brewery_id", referencedColumnName = "brewery_id")})
+    // Non owning side
+    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
-    // @OneToMany(mappedBy = "brewery")
-    // List<Beer> beers;
+    @JsonIgnore
+    @Transient
+    @OneToMany(mappedBy = "brewery")
+    List<Beer> beers;
 
     private String contactInfo;
     private String address;
