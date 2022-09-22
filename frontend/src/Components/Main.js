@@ -1,25 +1,28 @@
 import { Component } from "react";
-import { Switch, Route, Redirect, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Routes, Route, Link } from "react-router-dom";
 import { addToken, deleteUser } from "../Redux/actionCreators";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import BreweriesPage from "./Breweries/BreweriesTilesPage";
 import BeersPage from "./Beers/BeersListPage";
 import EditBreweriesPage from "./Edit/EditBreweriesBeersPage";
-
+import BeersListPage from "./Beers/BeersListPage";
+import EditBreweriesBeersPage from "./Edit/EditBreweriesBeersPage";
 import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Home from "./Home/Home";
 import Footer from "./Footer";
+import BeerDetailPage from "./Beers/BeerDetailPage";
 import BreweryDetails from "./Breweries/BreweryDetailsPage";
 import AddBrewery from "./AddBrewery/AddBrewery";
+//import { any } from "prop-types";
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
   return {
     token: state.token,
     user: state.user,
   };
 };
-
+*/
 const mapDispatchToProps = (dispatch) => ({
   addToken: () => {
     dispatch(addToken());
@@ -31,7 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Main extends Component {
   constructor(props) {
-    super(props);
+    // super(props);
   }
 
   handleLogout = () => {
@@ -58,8 +61,8 @@ class Main extends Component {
           <nav className="nav-menu">
             <Link to="/breweries">Breweries</Link>
             <Link to="/beers">Beers</Link>
-            <Link to="/ListOfBeers">Beers</Link>
-            <Link to="/BeerDetailReviews">Beer Info and Reviews</Link>
+            <Link to="/BeersListPage">Beers</Link>
+            <Link to="/BeerDetailPage">Beer Info and Reviews</Link>
 
             <Link to="/edit">Edit</Link>
             <Link to="/new">Add Brewery</Link>
@@ -74,32 +77,25 @@ class Main extends Component {
             )}
           </nav>
         </header>
-        <Switch>
-          <Route exact path="/breweries" component={() => <BreweriesPage />} />
-          <Route
-            exact
-            path="/breweries/:id"
-            component={() => <BreweryDetails />}
-          />
-          <Route path="/beers" component={() => <BeersPage />} />
-          <Route exact path="/ListOfBeers" component={() => <ListOfBeers />} />
-          <Route exact path="/AddBrewery" component={() => <AddBrewery />} />
-          <Route exact path="/edit" component={() => <EditBreweriesPage />} />
-          <Route exact path="/edit/beers" component={() => <EditBeersPage />} />
-          <Route
-            exact
-            path="/BeerDetailReviews"
-            component={() => <BeerDetailReviews />}
-          />
-
-          <Route path="/login" component={() => <Login />} />
-          <Route path="/register" component={() => <Register />} />
-          <Route path="/home" component={() => <Home />} />
-        </Switch>
+        <Routes>
+          <Route path="/breweries" element={() => <BreweriesPage />} />
+          <Route path="/breweries/:id" element={() => <BreweryDetails />} />
+          <Route path="/beers" element={() => <BeersPage />} />
+          <Route path="/BeersListPage" element={() => <BeersListPage />} />
+          <Route path="/AddBrewery" element={() => <AddBrewery />} />
+          <Route path="/edit" element={() => <EditBreweriesPage />} />
+          <Route path="/edit/EditBreweriesBeersPage" element={() => <EditBreweriesBeersPage />} />
+          <Route path="/BeerDetailPage" element={() => <BeerDetailPage />} />
+          <Route path="/Login" element={() => <Login />} />
+          <Route path="/register" element={() => <Register />} />
+          <Route path="/home" element={() => <Home />} />
+        </Routes>
         <Footer />
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default mapDispatchToProps;
+
+//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

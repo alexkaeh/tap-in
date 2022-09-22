@@ -9,7 +9,7 @@ const BreweryDetailsPage = () => {
     fetch(`http://localhost:8081/api/brewery/${id}`)
       .then((res) => res.json())
       .then((data) => setBrewery(data));
-  }, []);
+  }, [id]);
 
   console.log(brewery);
 
