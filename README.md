@@ -1,5 +1,5 @@
 # Tap In
-*Created by Josie Jenson, Ashley Muston, Jennifer Brown, and Alex Kaehler*
+*Created by Josie Jenson, Ashley Muston, Jennifer Brown, William Haywood, and Alex Kaehler*
 
 A web app for beer lovers to find, save, and review beers and breweries.
 
